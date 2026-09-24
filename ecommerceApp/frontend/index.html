@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Productos - TIENDA OZORES</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="bg-light">
+  <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <div class="container-fluid px-3 px-lg-4">
+      <a class="navbar-brand mb-0 h1" href="index.html">TIENDA OZORES</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+        aria-controls="mainNavbar" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <div
+          class="navbar-menu-stack d-flex flex-column flex-lg-row gap-2 align-items-lg-center ms-lg-auto pt-3 pt-lg-0">
+          <span id="session-status" class="navbar-text text-light small">Modo invitado</span>
+          <a id="profile-link" href="profile.html" class="btn btn-outline-info btn-sm d-none">
+            <i class="bi bi-person-circle"></i> Mi perfil
+          </a>
+          <a id="admin-link" href="admin.html" class="btn btn-outline-info btn-sm d-none">
+            <i class="bi bi-sliders"></i> Panel de administración
+          </a>
+          <a id="login-link" href="login.html" class="btn btn-outline-light btn-sm">
+            Iniciar sesión
+          </a>
+          <a id="register-link" href="register.html" class="btn btn-outline-warning btn-sm">
+            Registrarme
+          </a>
+          <button id="logout-button" class="btn btn-outline-light btn-sm d-none">
+            Cerrar sesión
+          </button>
+          <button id="cart-button" type="button" class="btn btn-outline-light btn-sm">
+            🛒 Carrito (<span id="cart-count">0</span>)
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-4 mt-md-5 mb-5" id="app">
+    <section id="catalog-section">
+      <div class="row g-3 mb-4 align-items-end">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-4 d-flex flex-wrap gap-2">
+          <button id="clear-filter-inline-button" class="btn btn-outline-secondary d-none">
+            <i class="bi bi-x-circle"></i> Limpiar filtro
+          </button>
+          <button id="filter-button" class="btn btn-outline-primary">
+            <i class="bi bi-funnel"></i> Filtrar
+          </button>
+        </div>
+      </div>
+
+      <div id="active-category-banner" class="alert alert-info py-2 small d-none" role="status"></div>
+
+      <div class="catalog-header">
+        <h2>Catálogo de Productos</h2>
+      </div>
+      <div class="row g-4" id="catalogo"></div>
+      <nav class="mt-4" aria-label="Paginación de productos">
+        <ul id="catalog-pagination" class="pagination pagination-sm justify-content-center flex-wrap mb-0 catalog-pagination"></ul>
+      </nav>
+    </section>
+  </div>
+
+  <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title h5" id="filterModalLabel">Filtrar productos</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-muted small mb-3">
+            Elegí una categoría para ver solo los productos que coincidan.
+          </p>
+          <div id="category-filter-options" class="d-flex flex-wrap gap-2"></div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <div class="d-flex gap-2">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+              Cancelar
+            </button>
+            <button type="button" id="apply-filter-button" class="btn btn-primary">
+              Aplicar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title h5" id="cartModalLabel">Carrito de compras</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card border-0 bg-light mb-3">
+            <div class="card-body p-3">
+              <label for="coupon-code-input" class="form-label small text-muted mb-2">
+                Código de cupón
+              </label>
+              <div class="input-group input-group-sm">
+                <input
+                  id="coupon-code-input"
+                  type="text"
+                  class="form-control"
+                  placeholder="Ej: CUPON10"
+                  autocomplete="off"
+                />
+                <button id="apply-coupon-button" type="button" class="btn btn-outline-primary">
+                  Aplicar
+                </button>
+                <button id="clear-coupon-button" type="button" class="btn btn-outline-secondary">
+                  Quitar
+                </button>
+              </div>
+              <div id="coupon-feedback" class="small mt-2 text-muted"></div>
+            </div>
+          </div>
+          <div id="cart-empty-state" class="alert alert-light border text-center mb-0 d-none">
+            Tu carrito está vacío.
+          </div>
+          <div id="cart-items-list" class="d-grid gap-3"></div>
+          <nav class="mt-4" aria-label="Paginación del carrito">
+            <ul id="cart-pagination" class="pagination pagination-sm justify-content-center flex-wrap mb-0 admin-pagination"></ul>
+          </nav>
+        </div>
+        <div class="modal-footer d-flex flex-column flex-sm-row justify-content-between align-items-stretch gap-3">
+          <div class="d-flex flex-column small text-muted">
+            <span>Subtotal: <span id="cart-modal-subtotal">$0,00</span></span>
+            <span id="cart-modal-coupon-line" class="text-success d-none"></span>
+            <span id="cart-modal-discount-line" class="text-success d-none"></span>
+            <span class="fw-semibold text-dark mt-1">
+              Total a pagar: <span id="cart-modal-total">$0,00</span>
+            </span>
+          </div>
+          <div class="d-flex flex-column flex-sm-row gap-2">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button id="finalize-purchase-button" type="button" class="btn btn-primary">Finalizar compra</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="purchaseSuccessModal" tabindex="-1" aria-labelledby="purchaseSuccessModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h2 class="modal-title h5" id="purchaseSuccessModalLabel">¡Gracias por tu compra!</h2>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-3">Tu pedido fue confirmado correctamente. Te dejamos el resumen de tu compra.</p>
+          <div class="border rounded p-3 bg-light">
+            <div class="d-flex justify-content-between mb-2">
+              <span class="text-muted">Pedido</span>
+              <strong id="purchase-success-order-id">#</strong>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+              <span class="text-muted">Subtotal</span>
+              <strong id="purchase-success-subtotal">$0,00</strong>
+            </div>
+            <div id="purchase-success-discount-row" class="d-flex justify-content-between mb-2 d-none">
+              <span class="text-muted">Descuento</span>
+              <strong id="purchase-success-discount">-$0,00</strong>
+            </div>
+            <div class="d-flex justify-content-between mb-3">
+              <span class="text-muted">Total</span>
+              <strong id="purchase-success-total">$0,00</strong>
+            </div>
+            <div>
+              <div class="small text-muted mb-2">Detalle de productos</div>
+              <ul id="purchase-success-items-list" class="list-group list-group-flush"></ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+
+</html>

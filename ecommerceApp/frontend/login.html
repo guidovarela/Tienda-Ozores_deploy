@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar sesión - TIENDA OZORES</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="bg-light">
+  <main class="container min-vh-100 d-flex align-items-center justify-content-center py-4">
+    <div class="row justify-content-center w-100">
+      <div class="col-12 col-sm-10 col-md-6 col-lg-4">
+        <div class="card shadow-sm border-0">
+          <div class="card-body">
+            <div class="mb-4">
+              <h1 class="h4 mb-1">TIENDA OZORES</h1>
+              <p class="text-muted small mb-0">Ingresá para continuar tu compra o administrar tu cuenta.</p>
+            </div>
+            <div id="login-context-message" class="alert alert-info small d-none" role="status"></div>
+            <form id="login-form">
+              <div class="mb-3">
+                <label for="login-email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="login-email" autocomplete="email" required />
+              </div>
+              <div class="mb-3">
+                <label for="login-password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="login-password" autocomplete="current-password"
+                  required />
+              </div>
+              <p id="login-message" class="text-danger small mb-3"></p>
+              <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+            </form>
+            <div class="mt-3 text-center">
+              <a href="register.html" class="small text-decoration-none">No tengo cuenta, quiero registrarme</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="js/login.js"></script>
+</body>
+
+</html>

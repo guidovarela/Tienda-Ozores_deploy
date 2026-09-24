@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi perfil - TIENDA OZORES</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="bg-light">
+  <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <div class="container-fluid px-3 px-lg-4">
+      <a class="navbar-brand mb-0 h1" href="index.html">NeoData Shop</a>
+      <div class="d-flex gap-2 ms-auto">
+        <a href="index.html" class="btn btn-outline-info btn-sm">
+          <i class="bi bi-shop"></i> Volver al catálogo
+        </a>
+        <button id="logout-button" class="btn btn-outline-light btn-sm">Cerrar sesión</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-4 py-md-5">
+    <div class="row g-4">
+      <div class="col-12 col-lg-4">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <h1 class="h4 mb-3">Mi perfil</h1>
+            <div class="small text-muted mb-1">Nombre</div>
+            <div id="profile-name" class="fw-semibold mb-3"></div>
+            <div class="small text-muted mb-1">Email</div>
+            <div id="profile-email" class="fw-semibold mb-3"></div>
+            <div class="small text-muted mb-1">Rol</div>
+            <div id="profile-role" class="fw-semibold"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-8">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2 mb-3">
+              <div>
+                <h2 class="h5 mb-1">Historial de compras</h2>
+                <p class="text-muted small mb-0">Órdenes registradas con su detalle.</p>
+              </div>
+            </div>
+
+            <div id="orders-empty-state" class="alert alert-light border text-center d-none mb-0">
+              Todavía no tenés compras registradas.
+            </div>
+
+            <div id="orders-list" class="d-grid gap-3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="js/profile.js"></script>
+</body>
+
+</html>
