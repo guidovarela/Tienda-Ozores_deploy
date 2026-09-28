@@ -1,4 +1,4 @@
-# EcommerceApp
+# Tienda Ozores
 
 Aplicación full-stack de comercio electrónico construida con Node.js, Express, Sequelize y SQLite. Incluye autenticación JWT, gestión de productos, carrito de compras, órdenes y panel administrativo.
 
